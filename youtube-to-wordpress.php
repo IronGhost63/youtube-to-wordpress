@@ -21,12 +21,11 @@ function ig63_get_playlist() {
 	$json_data = json_decode(file_get_contents("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=". $playlist ."&key=" .$api_key), true);
 
 	$cached = get_option("ig63_cached_video", array());
-
 	$new_video = array();
 
 	foreach ($json_data['items'] as $item){
 		if(!in_array($item['snippet']['resourceId']['videoId'], $cached)){
-			$item[] = $item['snippet']['resourceId']['videoId'];
+			$cached[] = $item['snippet']['resourceId']['videoId'];
 
 			/*
 			$new_video[] = array(
@@ -50,7 +49,6 @@ function ig63_get_playlist() {
 			wp_insert_post($args);
 		}
 	}
-
 	update_option("ig63_cached_video", $cached, false);
 }
 
