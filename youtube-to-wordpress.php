@@ -15,6 +15,10 @@ function my_activation() {
 	}
 }
 
+function my_deactivation() {
+	wp_clear_scheduled_hook('my_daily_event');
+}
+
 function ig63_get_playlist() {
 	require_once("config.php");
 
@@ -56,6 +60,7 @@ function ig63_get_playlist() {
 }
 
 register_activation_hook(__FILE__, 'my_activation');
+register_deactivation_hook(__FILE__, 'my_deactivation');
 add_action("my_daily_event", "ig63_get_playlist");
 add_action("wp_ajax_updatevideo", "ig63_get_playlist");
 ?>
