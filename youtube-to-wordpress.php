@@ -43,7 +43,10 @@ function ig63_get_playlist() {
 				'post_author' => $author_id,
 				'post_status' => 'pending',
 				'post_content' => $content,
-				'post_category' => array($category_id)
+				'post_category' => array($category_id),
+				'meta_input' => array(
+					'video_id' => $item['snippet']['resourceId']['videoId']
+				)
 			);
 
 			wp_insert_post($args);
