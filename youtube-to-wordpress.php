@@ -8,4 +8,6 @@
  * Author URI: http://jirayu.in.th
  * License: GPL2
  */
+
+require_once("config.php");
 ?>
